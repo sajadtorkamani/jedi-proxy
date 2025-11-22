@@ -25,3 +25,19 @@ To start the Docker container, run:
 ```shell
 docker compose up -d
 ```
+
+### Recipes
+
+#### Create certificates for host
+
+
+Suppose your app's hostname is `traefik-testapp-1.localhost`, you can run:
+
+```shell
+mkcert \
+-key-file certs/traefik-testapp-1.key.pem \
+-cert-file certs/traefik-testapp-1.cert.pem \
+traefik-testapp-1.localhost
+```
+
+

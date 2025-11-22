@@ -1,4 +1,4 @@
 tls:
   certificates:
-    - certFile: /certs/traefik-test.localhost-cert.pem
-      keyFile: /certs/traefik-test.localhost-key.pem
+    - certFile: /certs/traefik-testapp-1.cert.pem
+      keyFile: /certs/traefik-testapp-1.key.pem
