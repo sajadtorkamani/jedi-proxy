@@ -2,7 +2,7 @@
 
 This project defines a Docker container that
 starts [Traefik](https://traefik.io/) on port `80`
-allowing it to serve as a reverse-proxy for several of my projects.
+allowing it to act as a reverse proxy for several of my projects.
 
 The admin dashboard is available at http://localhost:8080.
 
