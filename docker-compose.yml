@@ -6,10 +6,24 @@ services:
             - "--api.insecure=true"
             - "--providers.docker=true"
             - "--providers.docker.exposedbydefault=false"
+
             - "--entrypoints.web.address=:80"
             - "--entrypoints.websecure.address=:443"
+
+            # Redirect HTTP to HTTPs
+            - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+            - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+
+            # Use file provider to enable TLS for development environment
             - "--providers.file.directory=/etc/traefik/dynamic"
             - "--providers.file.watch=true"
+
+            # Use Let's Encrypt (ACME) for production
+            - "certificatesresolvers.le.acme.email=${TRAEFIK_ACME_EMAIL:-sajad@hey.com}"
+            - "certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+            - "certificatesresolvers.le.acme.httpchallenge=true"
+            - "certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+
         ports:
             - "80:80"
             - "443:443"
@@ -18,6 +32,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./certs:/certs
             - ./dynamic:/etc/traefik/dynamic
+            - ./letsencrypt:/letsencrypt
         networks:
             - traefik
 
