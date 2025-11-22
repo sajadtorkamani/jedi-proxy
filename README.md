@@ -7,7 +7,11 @@ allowing it to act as a reverse proxy for several of my projects.
 Once the container is running, the admin dashboard is available
 at http://localhost:8080.
 
-More docs to follow once I've got a better idea of how to use this.
+More docs to follow once I've got a better idea of how to use this. For now,
+I've added the below two projects as examples of how this single Traefik proxy
+can be used to host multiple Dockerized applications:
+- [traefik-testapp-1](https://github.com/sajadtorkamani/traefik-testapp-1): https://traefik-testapp-1.sajadtorkamani.com/
+- [traefik-testapp-2](https://github.com/sajadtorkamani/traefik-testapp-2): https://traefik-testapp-2.sajadtorkamani.com/
 
 ## Getting started
 
