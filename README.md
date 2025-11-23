@@ -51,3 +51,9 @@ certificate for it via `mkcert` by running:
 
 See [bin/mkcert](./bin/mkcert) for underyling `mkcert` command.
 
+Restart Docker service so the changes are picked up:
+
+```shell
+docker compose restart
+```
+
