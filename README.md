@@ -57,3 +57,8 @@ Restart Docker service so the changes are picked up:
 docker compose restart
 ```
 
+### Create password for the admin dashboard on prod
+```shell
+ htpasswd -nbB sajad "<password>"
+```
+
