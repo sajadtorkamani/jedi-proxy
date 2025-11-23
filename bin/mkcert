@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+APP_HOST=$1
+
+mkcert \
+-key-file certs/"$APP_HOST".key.pem \
+-cert-file certs/"$APP_HOST".cert.pem \
+"$APP_HOST"

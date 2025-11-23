@@ -1,0 +1,17 @@
+http:
+  routers:
+    traefik-dashboard:
+      rule: Host(`traefik-admin.localhost`)
+      entryPoints:
+        - websecure
+      service: api@internal
+      middlewares:
+        - dashboard-auth
+      tls:
+        certResolver: le
+
+  middlewares:
+    dashboard-auth:
+      basicAuth:
+        users:
+          - "sajad:${TRAEFIK_DASHBOARD_PWD_HASH}"

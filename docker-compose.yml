@@ -3,7 +3,7 @@ services:
         container_name: traefik
         image: traefik:3.6
         command:
-            - "--api.insecure=true"
+            - "--api.dashboard=true"
 
             # Watch Docker containers for Traefik labels and configure routes / services accordingly
             - "--providers.docker=true"
