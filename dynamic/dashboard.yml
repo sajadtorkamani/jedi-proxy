@@ -14,4 +14,4 @@ http:
     dashboard-auth:
       basicAuth:
         users:
-          - "sajad:${TRAEFIK_DASHBOARD_PWD_HASH}"
+          - "sajad:{{ env \"TRAEFIK_DASHBOARD_PWD_HASH\" }}"

@@ -23,7 +23,7 @@ mkcert \
 echo "Certificates generated at $KEY_FILE and $CERT_FILE ✅"
 
 # Add certificate config to dynamic/certs.yml
-printf "    - certFile: %s\n" "$CERT_FILE" >> $CERTS_YML_FILE
-printf "      keyFile: %s\n" "$KEY_FILE" >> $CERTS_YML_FILE
+printf "    - certFile: %s\n" "/$CERT_FILE" >> $CERTS_YML_FILE
+printf "      keyFile: %s\n" "/$KEY_FILE" >> $CERTS_YML_FILE
 
 echo "Cert configs added at $CERTS_YML_FILE ✅"

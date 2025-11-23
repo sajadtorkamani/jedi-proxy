@@ -2,8 +2,11 @@ services:
     traefik:
         container_name: traefik
         image: traefik:3.6
+        environment:
+            TRAEFIK_DASHBOARD_PWD_HASH: ${TRAEFIK_DASHBOARD_PWD_HASH}
         command:
-            - "--api.dashboard=true"
+#            - "--api.dashboard=true"
+            - "--api.insecure=true"
 
             # Watch Docker containers for Traefik labels and configure routes / services accordingly
             - "--providers.docker=true"
