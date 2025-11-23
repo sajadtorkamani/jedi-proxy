@@ -34,7 +34,7 @@ services:
             # This requires port 80 to be publicly open.
             - "--certificatesresolvers.le.acme.httpchallenge=true"
             - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
-            -
+
             # Load configuration from YAML files in the /etc/traefik/dynamic/prod folder
             - "--providers.file.directory=/etc/traefik/dynamic/prod"
 
