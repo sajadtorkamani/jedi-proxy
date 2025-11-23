@@ -40,7 +40,7 @@ services:
             - ./certs:/certs
 
             # Contains your dynamic Traefik configuration
-            - ./dynamic:/etc/traefik/dynamic/dev
+            - ./dynamic/dev:/etc/traefik/dynamic/dev
         networks:
             - traefik
 
