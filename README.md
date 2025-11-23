@@ -51,6 +51,3 @@ certificate for it via `mkcert` by running:
 
 See [bin/mkcert](./bin/mkcert) for underyling `mkcert` command.
 
-Update [dynamic/certs.yml](./dynamic/certs.yml) to reference the newly generated
-certificate files.
-

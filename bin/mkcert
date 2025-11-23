@@ -2,9 +2,28 @@
 
 set -e
 
+# Setup variables
 APP_HOST=$1
+KEY_FILE="certs/$APP_HOST.key.pem"
+CERT_FILE="certs/$APP_HOST.cert.pem"
+CERTS_YML_FILE="dynamic/certs.yml"
 
+# Validate a host name was passed
+if [ -z "$APP_HOST" ]; then
+  echo "Please pass a host name"
+  exit 1
+fi
+
+# Create certificate files
 mkcert \
--key-file certs/"$APP_HOST".key.pem \
--cert-file certs/"$APP_HOST".cert.pem \
+-key-file "$KEY_FILE" \
+-cert-file "$CERT_FILE" \
 "$APP_HOST"
+
+echo "Certificates generated at $KEY_FILE and $CERT_FILE ✅"
+
+# Add certificate config to dynamic/certs.yml
+printf "    - certFile: %s\n" "$CERT_FILE" >> $CERTS_YML_FILE
+printf "      keyFile: %s\n" "$KEY_FILE" >> $CERTS_YML_FILE
+
+echo "Cert configs added at $CERTS_YML_FILE ✅"
