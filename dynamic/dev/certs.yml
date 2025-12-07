@@ -6,3 +6,5 @@ tls:
       keyFile: /certs/traefik-testapp-2.localhost.key.pem
     - certFile: /certs/sajadtorkamani.localhost.cert.pem
       keyFile: /certs/sajadtorkamani.localhost.key.pem
+    - certFile: /certs/symfony-playground.localhost.cert.pem
+      keyFile: /certs/symfony-playground.localhost.key.pem
