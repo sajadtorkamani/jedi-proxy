@@ -1,4 +1,4 @@
-# jedi-traefik
+# jedi-proxy
 
 This project defines a Docker container that
 starts [Traefik](https://traefik.io/) on port `80`
