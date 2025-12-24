@@ -8,3 +8,7 @@ tls:
       keyFile: /certs/sajadtorkamani.localhost.key.pem
     - certFile: /certs/symfony-playground.localhost.cert.pem
       keyFile: /certs/symfony-playground.localhost.key.pem
+    - certFile: /certs/api.cpad.localhost.cert.pem
+      keyFile: /certs/api.cpad.localhost.key.pem
+    - certFile: /certs/cpad.localhost.cert.pem
+      keyFile: /certs/cpad.localhost.key.pem
