@@ -1,6 +1,6 @@
 services:
-    traefik:
-        container_name: traefik
+    jedi-proxy:
+        container_name: jedi-proxy
         image: traefik:3.6
         environment:
             - TRAEFIK_DASHBOARD_PWD_HASH=${TRAEFIK_DASHBOARD_PWD_HASH}
@@ -56,8 +56,8 @@ services:
             # Stores ACME data (acme.json) in production
             - ./letsencrypt:/letsencrypt
         networks:
-            - traefik
+            - jedi-proxy
 
 networks:
-    traefik:
+    jedi-proxy:
         external: true

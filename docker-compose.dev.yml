@@ -1,5 +1,5 @@
 services:
-    proxy:
+    jedi-proxy:
         container_name: jedi-proxy
         image: traefik:3.6
         command:
