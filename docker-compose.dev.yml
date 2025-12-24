@@ -1,6 +1,6 @@
 services:
-    traefik:
-        container_name: jedi-traefik
+    proxy:
+        container_name: jedi-proxy
         image: traefik:3.6
         command:
             # Enable the dashboard and API routes on port 8080
@@ -42,8 +42,8 @@ services:
             # Contains your dynamic Traefik configuration
             - ./dynamic/dev:/etc/traefik/dynamic/dev
         networks:
-            - traefik
+            - jedi-proxy
 
 networks:
-    traefik:
+    jedi-proxy:
         external: true
