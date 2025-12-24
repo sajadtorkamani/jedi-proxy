@@ -42,6 +42,7 @@ services:
             # Contains our dynamic Traefik configuration. This directory is
             # specified as a file provider in the --providers.file.directory
             # flag. You can find that flat services.proxy.command above.
+            - ./dynamic/dev:/etc/traefik/dynamic/dev
         networks:
             - jedi-proxy
 
