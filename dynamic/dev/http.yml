@@ -1,0 +1,13 @@
+http:
+    routers:
+        cpad-frontend-router:
+            rule: "Host(`cpad.localhost`)"
+            service: cpad-frontend
+            entryPoints:
+                - websecure
+            tls: true
+    services:
+        cpad-frontend:
+            loadBalancer:
+                servers:
+                    - url: "http://host.docker.internal:3000"
