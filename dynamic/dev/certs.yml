@@ -12,3 +12,7 @@ tls:
       keyFile: /certs/api.cpad.localhost.key.pem
     - certFile: /certs/cpad.localhost.cert.pem
       keyFile: /certs/cpad.localhost.key.pem
+    - certFile: /certs/cpad-web.localhost.cert.pem
+      keyFile: /certs/cpad-web.localhost.key.pem
+    - certFile: /certs/mail.cpad-web.localhost.cert.pem
+      keyFile: /certs/mail.cpad-web.localhost.key.pem
