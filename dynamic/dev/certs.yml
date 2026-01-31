@@ -16,3 +16,7 @@ tls:
       keyFile: /certs/cpad-web.localhost.key.pem
     - certFile: /certs/mail.cpad-web.localhost.cert.pem
       keyFile: /certs/mail.cpad-web.localhost.key.pem
+    - certFile: /certs/fekir.localhost.cert.pem
+      keyFile: /certs/fekir.localhost.key.pem
+    - certFile: /certs/api.fekir.localhost.cert.pem
+      keyFile: /certs/api.fekir.localhost.key.pem
