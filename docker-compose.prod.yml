@@ -4,6 +4,8 @@ services:
         image: traefik:3.6
         environment:
             - TRAEFIK_DASHBOARD_PWD_HASH=${TRAEFIK_DASHBOARD_PWD_HASH}
+            - TRAEFIK_DASHBOARD_DOMAIN=${TRAEFIK_DASHBOARD_DOMAIN}
+
         command:
             - "--api.dashboard=true"
 
