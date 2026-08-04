@@ -20,3 +20,5 @@ tls:
       keyFile: /certs/fekir.localhost.key.pem
     - certFile: /certs/api.fekir.localhost.cert.pem
       keyFile: /certs/api.fekir.localhost.key.pem
+    - certFile: /certs/api.vps-docker-demo.localhost.cert.pem
+      keyFile: /certs/api.vps-docker-demo.localhost.key.pem

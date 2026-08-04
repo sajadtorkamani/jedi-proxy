@@ -14,7 +14,12 @@ can be used to host multiple Dockerized applications:
 - [traefik-testapp-1](https://github.com/sajadtorkamani/traefik-testapp-1): https://traefik-testapp-1.sajadtorkamani.com/
 - [traefik-testapp-2](https://github.com/sajadtorkamani/traefik-testapp-2): https://traefik-testapp-2.sajadtorkamani.com/
 
-## Getting started
+## Local setup (macOS)
+
+### Create Docker network
+```shell
+docker network create jedi-proxy
+```
 
 ### Install `mkcert` & `nss`
 
@@ -31,6 +36,13 @@ brew install nss # if you use Firefox
 ```shell
 cp .env.example .env
 ```
+
+### Visit dashboard
+
+Open http://localhost:8080.
+
+## Prod setup
+TODO
 
 ### Start Docker service
 
@@ -49,7 +61,7 @@ certificate for it via `mkcert` by running:
 ./bin/mkcert traefik-testapp-1.localhost
 ```
 
-See [bin/mkcert](./bin/mkcert) for underyling `mkcert` command.
+See [bin/mkcert](./bin/mkcert) for the underyling `mkcert` command.
 
 Restart Docker service so the changes are picked up:
 

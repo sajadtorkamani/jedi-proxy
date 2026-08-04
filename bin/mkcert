@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# Setup variables
+# Set up variables
 APP_HOST=$1
 KEY_FILE="certs/$APP_HOST.key.pem"
 CERT_FILE="certs/$APP_HOST.cert.pem"
