@@ -6,8 +6,18 @@ http:
             entryPoints:
                 - websecure
             tls: true
+        app-vps-docker-demo-router:
+            rule: "Host(`app.vps-docker-demo.localhost`)"
+            service: app-vps-docker-demo
+            entryPoints:
+                - websecure
+            tls: true
     services:
         cpad-frontend:
+            loadBalancer:
+                servers:
+                    - url: "http://host.docker.internal:3000"
+        app-vps-docker-demo:
             loadBalancer:
                 servers:
                     - url: "http://host.docker.internal:3000"
