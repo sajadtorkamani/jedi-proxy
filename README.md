@@ -37,6 +37,13 @@ brew install nss # if you use Firefox
 cp .env.example .env
 ```
 
+### Create certificates
+
+`certs/` is gitignored — the `.key.pem` files are private keys, so a fresh clone
+starts empty and Traefik will log an error for every cert listed in
+`dynamic/dev/certs.yml` that is missing. Regenerate the ones you need with
+[`./bin/mkcert <host>`](#create-certificates-for-host).
+
 ### Visit dashboard
 
 Open http://localhost:8080.
