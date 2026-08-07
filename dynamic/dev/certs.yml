@@ -24,3 +24,5 @@ tls:
       keyFile: /certs/api.vps-docker-demo.localhost.key.pem
     - certFile: /certs/app.vps-docker-demo.localhost.cert.pem
       keyFile: /certs/app.vps-docker-demo.localhost.key.pem
+    - certFile: /certs/mail.vps-docker-demo.localhost.cert.pem
+      keyFile: /certs/mail.vps-docker-demo.localhost.key.pem
