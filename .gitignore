@@ -3,3 +3,10 @@
 .env
 
 letsencrypt/acme.json
+
+# mkcert output. These are per-machine dev certificates and the .key.pem files
+# are private keys, so they must not be committed — regenerate them locally with
+# ./bin/mkcert <host>. The directory itself is kept because docker-compose
+# bind-mounts ./certs into the container.
+certs/*
+!certs/.gitkeep
