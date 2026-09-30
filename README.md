@@ -92,8 +92,15 @@ cd ~/jedi-proxy
 hash="$(htpasswd -nBC 12 sajad | cut -d: -f2- | tr -d '\n')"
 sed -i "s|^TRAEFIK_DASHBOARD_PWD_HASH=.*|TRAEFIK_DASHBOARD_PWD_HASH='$hash'|" .env
 unset hash
-docker compose up -d
+docker compose -f docker-compose.prod.yml up -d
 ```
+
+Name the prod file explicitly (or set `COMPOSE_FILE=docker-compose.prod.yml`
+in the server's `.env`). A bare `docker compose up -d` follows `COMPOSE_FILE`,
+and if that still says `docker-compose.dev.yml` it recreates the proxy with the
+dev config — no Let's Encrypt resolver, the self-signed default certificate on
+every site, and 8080 published. That took every site on prod2 down on
+2026-09-30 until the proxy was recreated from the prod file.
 
 Keep the value single-quoted: the hash contains `$`, which compose would
 otherwise try to interpolate.
