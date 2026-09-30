@@ -43,10 +43,12 @@ services:
             # Reload Traefik when the YAML files from /etc/traefik/dynamic/prod are edited
             - "--providers.file.watch=true"
 
+        # No 8080 here, unlike dev: prod does not enable --api.insecure, so nothing
+        # listens on it. The dashboard is served on websecure instead, behind
+        # basic auth (dynamic/prod/dashboard.yml).
         ports:
             - "80:80"
             - "443:443"
-            - "8080:8080"
         volumes:
             # Mounts your host machine's Docker socket to the Traefik container so Traefik
             # can read Docker labels and do its auto-routing magic.

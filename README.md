@@ -77,7 +77,24 @@ docker compose restart
 ```
 
 ### Create password for the admin dashboard on prod
+
+`dynamic/prod/dashboard.yml` already supplies the `sajad:` username, so
+`TRAEFIK_DASHBOARD_PWD_HASH` must be the bcrypt hash **alone**. `htpasswd`
+prints `sajad:<hash>`; storing that whole line gives Traefik
+`sajad:sajad:<hash>`, which it rejects — the dashboard router is dropped (404)
+and the hash is written to the log every few seconds.
+
+On the server, this prompts for the new password (so it stays out of shell
+history) and writes just the hash into `.env`:
+
 ```shell
- htpasswd -nbB sajad "<password>"
+cd ~/jedi-proxy
+hash="$(htpasswd -nBC 12 sajad | cut -d: -f2- | tr -d '\n')"
+sed -i "s|^TRAEFIK_DASHBOARD_PWD_HASH=.*|TRAEFIK_DASHBOARD_PWD_HASH='$hash'|" .env
+unset hash
+docker compose up -d
 ```
+
+Keep the value single-quoted: the hash contains `$`, which compose would
+otherwise try to interpolate.
 
