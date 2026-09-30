@@ -2,6 +2,11 @@
 
 .env
 
+# Per-machine environment selection; symlink one of these (see compose.yaml):
+#   ln -s compose.dev.yaml compose.override.yaml    (laptop)
+#   ln -s compose.prod.yaml compose.override.yaml   (server)
+/compose.override.yaml
+
 letsencrypt/acme.json
 
 # mkcert output. These are per-machine dev certificates and the .key.pem files

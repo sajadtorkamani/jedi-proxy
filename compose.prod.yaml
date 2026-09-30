@@ -1,7 +1,15 @@
+# Production overrides. On the server, symlink this to compose.override.yaml:
+#
+#   ln -s compose.prod.yaml compose.override.yaml
+#
+# Certificates come from Let's Encrypt (the "le" resolver below), and the
+# dashboard is served on websecure behind basic auth (dynamic/prod/dashboard.yml).
+
 services:
     jedi-proxy:
-        container_name: jedi-proxy
-        image: traefik:3.6
+        # Clears the base file's guard profile — see compose.yaml.
+        profiles: !reset []
+
         environment:
             - TRAEFIK_DASHBOARD_PWD_HASH=${TRAEFIK_DASHBOARD_PWD_HASH}
             - TRAEFIK_DASHBOARD_DOMAIN=${TRAEFIK_DASHBOARD_DOMAIN}
@@ -44,24 +52,11 @@ services:
             - "--providers.file.watch=true"
 
         # No 8080 here, unlike dev: prod does not enable --api.insecure, so nothing
-        # listens on it. The dashboard is served on websecure instead, behind
-        # basic auth (dynamic/prod/dashboard.yml).
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            # Mounts your host machine's Docker socket to the Traefik container so Traefik
-            # can read Docker labels and do its auto-routing magic.
-            - /var/run/docker.sock:/var/run/docker.sock
+        # listens on it. The base file's 80 and 443 are all prod publishes.
 
+        volumes:
             # Contains your dynamic Traefik configuration
             - ./dynamic:/etc/traefik/dynamic
 
             # Stores ACME data (acme.json) in production
             - ./letsencrypt:/letsencrypt
-        networks:
-            - jedi-proxy
-
-networks:
-    jedi-proxy:
-        external: true
