@@ -1,0 +1,46 @@
+# Base definition of the proxy, shared by every environment.
+#
+# This file alone is never what you run. Traefik's configuration, the dashboard
+# and where certificates come from all differ per environment and live in
+# compose.dev.yaml / compose.prod.yaml; one of those is symlinked to
+# compose.override.yaml per machine, and compose merges it in automatically:
+#
+#   ln -s compose.dev.yaml compose.override.yaml    (laptop)
+#   ln -s compose.prod.yaml compose.override.yaml   (server)
+#
+# Every site on the machine goes through this one container, so picking the
+# wrong environment is an outage, not a misconfiguration. That is why the choice
+# is a symlink on disk rather than a COMPOSE_FILE line in .env that a bare
+# `docker compose` may or may not be reading.
+
+services:
+    jedi-proxy:
+        container_name: jedi-proxy
+        image: traefik:3.6
+
+        # Guard for a checkout with no override: this profile is never enabled,
+        # so the base file on its own selects no service and `docker compose up
+        # -d` fails with "no service selected" — instead of replacing the running
+        # proxy with an unconfigured Traefik that routes nothing. Each
+        # environment file clears it with `profiles: !reset []`.
+        profiles:
+            - needs-compose-override
+
+        # No `command:` here. Compose replaces a service's command when merging
+        # files rather than combining it, so each environment file carries the
+        # full set of Traefik flags.
+
+        # Ports and volumes do merge, so each environment file only adds its own.
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            # Mounts your host machine's Docker socket to the Traefik container so Traefik
+            # can read Docker labels and do its auto-routing magic.
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - jedi-proxy
+
+networks:
+    jedi-proxy:
+        external: true
