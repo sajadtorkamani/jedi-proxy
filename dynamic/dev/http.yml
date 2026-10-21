@@ -12,6 +12,14 @@ http:
             entryPoints:
                 - websecure
             tls: true
+        # /api/* goes to the tools API container instead: its Docker-label
+        # router has a higher priority than this one.
+        tools-frontend-router:
+            rule: "Host(`tools.localhost`)"
+            service: tools-frontend
+            entryPoints:
+                - websecure
+            tls: true
     services:
         cpad-frontend:
             loadBalancer:
@@ -21,3 +29,7 @@ http:
             loadBalancer:
                 servers:
                     - url: "http://host.docker.internal:3000"
+        tools-frontend:
+            loadBalancer:
+                servers:
+                    - url: "http://host.docker.internal:3001"
