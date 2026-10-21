@@ -20,6 +20,12 @@ http:
             entryPoints:
                 - websecure
             tls: true
+        portal-router:
+            rule: "Host(`portal.localhost`)"
+            service: portal
+            entryPoints:
+                - websecure
+            tls: true
     services:
         cpad-frontend:
             loadBalancer:
@@ -33,3 +39,7 @@ http:
             loadBalancer:
                 servers:
                     - url: "http://host.docker.internal:3001"
+        portal:
+            loadBalancer:
+                servers:
+                    - url: "http://host.docker.internal:3000"
